@@ -859,7 +859,7 @@ async function snapBest(html){
   document.body.appendChild(box);
   try{
     await loadFontsFor(box);
-    await new Promise(r=>requestAnimationFrame(()=>r()));
+    await new Promise(r=>setTimeout(r,30)); /* 別タブに切り替えても止まらないよう setTimeout を使う */
     const land=fitBox(box,297,210), port=fitBox(box,210,297);
     const f=land.mm>=port.mm?land:port;
     box.style.width=f.W+"px"; box.style.fontSize=(f.font*0.985)+"px"; /* わずかに余裕をもたせる */
